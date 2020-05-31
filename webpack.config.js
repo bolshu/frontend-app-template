@@ -1,6 +1,8 @@
 const path = require("path");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+
+const DIST_PATH = path.resolve(__dirname, "dist");
 
 module.exports = {
   entry: {
@@ -8,7 +10,7 @@ module.exports = {
   },
   output: {
     filename: "[name].js",
-    path: path.resolve(__dirname, "dist")
+    path: DIST_PATH
   },
   module: {
     rules: [
@@ -24,7 +26,12 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: [".ts"]
+    extensions: [".js", ".ts"]
+  },
+  devServer: {
+    contentBase: DIST_PATH,
+    compress: true,
+    port: 9000
   },
   plugins: [
     new ExtractTextPlugin("style.css"),
