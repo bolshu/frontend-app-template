@@ -4,6 +4,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const DIST_PATH = path.resolve(__dirname, 'dist');
 
+const HTML_TEMPLATE = {
+  title: 'Frontend app template', // change me
+};
+
 module.exports = {
   entry: {
     index: ['./src/index.ts', './src/index.css'],
@@ -35,8 +39,6 @@ module.exports = {
   },
   plugins: [
     new ExtractTextPlugin('style.css'),
-    new HtmlWebpackPlugin({
-      title: 'Spreadsheet',
-    }),
+    new HtmlWebpackPlugin(HTML_TEMPLATE),
   ],
 };

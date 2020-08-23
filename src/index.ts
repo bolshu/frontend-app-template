@@ -1,1 +1,1 @@
-import './components/test/script';
+console.log('AWESOME FRONTEND APP TEMPLATE');
