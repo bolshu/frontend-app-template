@@ -1,9 +1,9 @@
-# Frontend app template
+# Frontend app template without frameworks
 
 ### Run and dev
 
 ```
-npm run dev
+npm run fun
 ```
 
 ### Config
