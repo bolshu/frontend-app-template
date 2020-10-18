@@ -1,13 +1,9 @@
 # Frontend app template without frameworks
 
-### Run and dev
+## Run and dev
 
-###### For development
+### For development
 
 ```
 npm run dev
 ```
-
-### Config
-
-Check webpack.config.js
