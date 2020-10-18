@@ -2,8 +2,10 @@
 
 ### Run and dev
 
+###### For development
+
 ```
-npm run fun
+npm run dev
 ```
 
 ### Config

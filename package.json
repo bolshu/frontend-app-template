@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "dev": "rimraf ./dist && npm i && webpack-dev-server --open",
-    "build": "rimraf ./dist && webpack --mode=development",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint --ext .ts ./"
   },
