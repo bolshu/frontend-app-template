@@ -1,19 +1,30 @@
 const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const DIST_PATH = path.resolve(__dirname, 'dist');
 
-const HTML_TEMPLATE = {
+const DEV_SERVER = {
+  contentBase: DIST_PATH,
+  compress: true,
+  port: 9000,
+};
+
+const miniCssExtractPluginConf = {
+  filename: 'style.css',
+};
+
+const htmlWebpackPluginConf = {
   title: 'Frontend app template', // change me
 };
 
 module.exports = {
-  entry: {
-    index: ['./src/index.ts', './src/index.css'],
-  },
+  entry: './src/index.ts',
   output: {
-    filename: '[name].js',
+    filename: 'bundle.js',
     path: DIST_PATH,
   },
   module: {
@@ -24,21 +35,26 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
-        test: /\.css$/i,
-        loader: ExtractTextPlugin.extract('css-loader', 'style-loader'),
+        test: /\.(s[ac]|c)?ss$/i,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'sass-loader',
+        ],
       },
     ],
   },
   resolve: {
     extensions: ['.js', '.ts'],
   },
-  devServer: {
-    contentBase: DIST_PATH,
-    compress: true,
-    port: 9000,
-  },
+  devServer: DEV_SERVER,
   plugins: [
-    new ExtractTextPlugin('style.css'),
-    new HtmlWebpackPlugin(HTML_TEMPLATE),
+    new MiniCssExtractPlugin(miniCssExtractPluginConf),
+    new HtmlWebpackPlugin(htmlWebpackPluginConf),
   ],
+  optimization: {
+    minimizer: [
+      new CssMinimizerPlugin(),
+    ],
+  },
 };
